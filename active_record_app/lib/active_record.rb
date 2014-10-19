@@ -1,5 +1,6 @@
+require 'connection_adapter'
 module ActiveRecord
-  class base
+  class Base
     @@connection = SqliteAdapter.new
 
     def initialize(attributes)

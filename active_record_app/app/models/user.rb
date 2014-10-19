@@ -1,5 +1,3 @@
-require 'connection_adapter'
-
-class User << ActiveRecord::Base
+class User < ActiveRecord::Base
 
 end
