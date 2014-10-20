@@ -18,5 +18,9 @@ class UserTest < Test::Unit::TestCase
     assert_equal 2, user.id
     assert_equal "Greg", user.name
   end
+
+  def test_table_name
+    assert_equal "users", User.table_name
+  end
 end
 

@@ -7,17 +7,17 @@ module ActiveRecord
       @attributes = attributes
     end
 
-    def id
-      @attributes[:id]
+    def method_missing(name)
+      columns = @@connection.columns(self.class.table_name)
+      if columns.include? name
+        @attributes[name]
+      else
+        super
+      end
     end
-
-    def name
-      @attributes[:name]
-    end
-
 
     def self.find(id)
-      find_by_sql("select * from users where id=#{id} LIMIT 1").first
+      find_by_sql("select * from #{self.table_name} where id=#{id} LIMIT 1").first
     end
 
     def self.find_by_sql(sql)
@@ -26,6 +26,10 @@ module ActiveRecord
       rows.map do |attributes|
         new attributes
       end
+    end
+
+    def self.table_name
+      name.downcase + "s"
     end
 
   end
