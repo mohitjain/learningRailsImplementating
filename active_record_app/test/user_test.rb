@@ -22,5 +22,12 @@ class UserTest < Test::Unit::TestCase
   def test_table_name
     assert_equal "users", User.table_name
   end
+
+  def test_all
+    users = User.all
+    assert_equal 5, users.count
+  end
+
+
 end
 
